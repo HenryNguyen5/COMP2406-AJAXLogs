@@ -1,0 +1,67 @@
+extends layout
+
+
+block header
+  link(rel='stylesheet', href="/stylesheets/uploadfile.css")
+  script(src="/javascripts/jquery-1.12.1.js")
+  script(src="/javascripts/Chart.js")
+  script(src="/javascripts/client.js")
+  script(src="/javascripts/jquery.uploadfile.js")
+  script(src="/javascripts/FileSaver.js")
+
+block content
+  h1= title
+
+  #stats
+
+  h2 Log Query
+
+  form#queryForm
+    fieldset(class="fieldset-auto-width")
+      div
+        label Message?
+        input#message(type="text", name="message")
+      div
+        label Service?
+        input#service(type="text", name="service")
+      div
+        label File?
+        input#file(type="text", name="file")
+      div
+        label Month?
+        input#month(type="text", name="month")
+      div
+        label Day?
+        input#day(type="text", name="day")
+      div
+        label Output Type:
+        select(id="queryType", name="queryType")
+          option(value="show", selected) Show
+          option(value="visualize") Visualize
+          option(value="download") Download
+      div
+        br
+        input#submitQuery(type = "button", value="Submit Log", width: "50")
+    br
+
+
+  br
+  #fileuploader(type="submit") Upload Log File
+  //added functionality
+  br
+  form(method=get, action='dropDB')
+    button(type=submit) Drop existing database
+  br
+  #show
+       label Showing Query Result
+       textarea#showLogs(cols=140, rows="5")
+  #visualize
+      label Visualizing Query Result
+      canvas(id="myChart", width="400", height="400")
+
+  h2 Files uploaded:
+
+  div
+    ul#fileList
+
+br
